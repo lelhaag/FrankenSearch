@@ -2,6 +2,8 @@
 
 FrankenSearch is a research project leveraging the **Ludii framework** for AI-driven experiments and evolutionary algorithm development. This repository contains code for search algorithms, evolutionary experiments, and game configurations.
 
+This project is part of my master's thesis, which can be found in `FrankenSearch.pdf` in this repository.
+
 ## Repository Structure
 
 ```
