@@ -1,0 +1,25 @@
+(SearchAlgorithm
+  "MCTSx0x1x4x6x6x9x9x12x14"
+  (Define C 0.6003137042630834)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.4693810198418817)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.9692881873559178)) visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)

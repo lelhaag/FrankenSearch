@@ -1,0 +1,2036 @@
+=== Results for Generation 3 ===
+Individual 40 (MCTSx0) - Rank 50: Score = 77.0
+(SearchAlgorithm
+  "MCTSx0"
+  (Define C 0.6)
+  (Define value -0.46703271231785104)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (sqrt (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 217 (PN-MCTS-Ax0x1) - Rank 49: Score = 80.0
+(SearchAlgorithm
+  "PN-MCTS-Ax0x1"
+  (Define C 0.6)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0.29077287196892015 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber 0)
+      (Set 0.5077180874981849 inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate sum disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min (/ 1.6716422976160141 disproofNumber)))
+    )
+  )
+  (FinalMoveSelection
+    (Condition
+      (eq proofNumber 0)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (neq proofNumber 0)
+      (SelectNode argmax visitCount)
+    )
+  )
+)
+Individual 48 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x0) - Rank 48: Score = 80.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x0"
+  (Define C 0.7004529621743515)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.4693810198418817)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (log (+ (log (Parent visitCount)) 1.9692881873559178)) visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 416 (MCTS1_4x0x2) - Rank 47: Score = 81.0
+(SearchAlgorithm
+  "MCTS1_4x0x2"
+  (Define C 1.4)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) (/ (log (* visitCount visitCount)) visitCount))))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 1 (MCTS) - Rank 46: Score = 82.0
+(SearchAlgorithm
+  "MCTS"
+  (Define C 0.6)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 428 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x42x0x2) - Rank 45: Score = 82.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x42x0x2"
+  (Define C 2.6113377097098587)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (/ (- value valueEstimate) visitCount))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (sqrt (/ (log (Parent visitCount)) 0.8210669628817803)) 2.797184729331219)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 398 (MCTSx0x1x2) - Rank 44: Score = 82.0
+(SearchAlgorithm
+  "MCTSx0x1x2"
+  (Define C 0.6)
+  (Define value -0.38244117024237423)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax 2.0597262302303725)
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 424 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x2) - Rank 43: Score = 83.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x2"
+  (Define C 0.6)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 0.7670024298536394)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 0.3014038590703044) (+ C (sqrt (/ (sqrt (/ (sqrt (+ (log (Parent visitCount)) 1.9692881873559178)) visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 83 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x42x0) - Rank 42: Score = 83.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x42x0"
+  (Define C 0.6)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (log (/ (sqrt (/ (log (Parent visitCount)) 1.4693810198418817)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.670463473461254)) visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 432 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x2) - Rank 41: Score = 83.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x2"
+  (Define C 0.6)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.4693810198418817)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (sqrt (+ (sqrt (Parent visitCount)) 1.9692881873559178)) visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 419 (PN-MCTS-Bx2) - Rank 40: Score = 83.0
+(SearchAlgorithm
+  "PN-MCTS-Bx2"
+  (Define C 0.6)
+  (Define T 5)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (Condition
+  (or (lte visitCount T) (neq (neq proofNumber 0) (neq disproofNumber 0)))
+  (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount))))
+))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (Condition
+  (or (lte visitCount T) (and (neq proofNumber 0) (neq disproofNumber 0)))
+  (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) visitCount))))
+))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber 0)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate sum disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+  (FinalMoveSelection
+    (Condition
+      (eq proofNumber 0)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (neq proofNumber 0)
+      (SelectNode argmax visitCount)
+    )
+  )
+)
+Individual 4 (PN-MCTS-B) - Rank 39: Score = 84.0
+(SearchAlgorithm
+  "PN-MCTS-B"
+  (Define C 0.6)
+  (Define T 5)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (Condition
+  (or (lte visitCount T) (and (neq proofNumber 0) (neq disproofNumber 0)))
+  (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount))))
+))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (Condition
+  (or (lte visitCount T) (and (neq proofNumber 0) (neq disproofNumber 0)))
+  (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) visitCount))))
+))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber 0)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate sum disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+  (FinalMoveSelection
+    (Condition
+      (eq proofNumber 0)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (neq proofNumber 0)
+      (SelectNode argmax visitCount)
+    )
+  )
+)
+Individual 397 (MCTS1_4x2) - Rank 38: Score = 84.0
+(SearchAlgorithm
+  "MCTS1_4x2"
+  (Define C 1.4)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ 0.551902019519213 (* C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.4693810198418817)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 226 (PNSx0x1) - Rank 37: Score = 85.0
+(SearchAlgorithm
+  "PNSx0x1"
+  (Selection
+    "MostProvingNode"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (eq nodeType andNode)
+      (SelectNode argmin disproofNumber)
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber -0.6923902950212899)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 4.342545515018344)
+      )
+    )
+  )
+  (Backpropagation
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate max disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+)
+Individual 6 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4) - Rank 36: Score = 86.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4"
+  (Define C 0.6)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.4693810198418817)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (sqrt (+ (log (Parent visitCount)) 1.9692881873559178)) visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 405 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x42x0x2) - Rank 35: Score = 86.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x42x0x2"
+  (Define C 0.6)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ (- 1.115038142140583 (* 1.6723537544307474 valueEstimate)) (* C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.0865846196295388)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.670463473461254)) 2.797184729331219)) C)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 227 (MCTSx0x1) - Rank 34: Score = 88.0
+(SearchAlgorithm
+  "MCTSx0x1"
+  (Define C 0.6)
+  (Define value -0.46703271231785104)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (/ (- 0 valueEstimate) (* C (sqrt (/ (sqrt (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 434 (PNSx0x1x2) - Rank 33: Score = 88.0
+(SearchAlgorithm
+  "PNSx0x1x2"
+  (Selection
+    "MostProvingNode"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (eq nodeType andNode)
+      (SelectNode argmin disproofNumber)
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber (- 0 1.76603093386796))
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber (/ 1.4324082854790408 1))
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1.1671229136759922)
+      )
+    )
+  )
+  (Backpropagation
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate sum disproofNumber))
+    )
+    (Condition
+      (eq nodeType maxNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min (+ 2.3166618327623523 1.138007334826654)))
+    )
+  )
+)
+Individual 5 (MCTS1_4) - Rank 32: Score = 88.0
+(SearchAlgorithm
+  "MCTS1_4"
+  (Define C 1.4)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 399 (MCTSx0x1x2) - Rank 31: Score = 88.0
+(SearchAlgorithm
+  "MCTSx0x1x2"
+  (Define C 0.6)
+  (Define value 0.5724910813390498)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (/ (- 0 valueEstimate) (* C (sqrt (/ (sqrt (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ 2.484128801572209 (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 85 (PNSx0) - Rank 30: Score = 89.0
+(SearchAlgorithm
+  "PNSx0"
+  (Selection
+    "MostProvingNode"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (eq nodeType andNode)
+      (SelectNode argmin disproofNumber)
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber 0)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber (- 1 1))
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate sum disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+)
+Individual 427 (MCTSx0x1x2) - Rank 29: Score = 89.0
+(SearchAlgorithm
+  "MCTSx0x1x2"
+  (Define C 0.6)
+  (Define value -0.46703271231785104)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (/ (- 0.34561021074226406 valueEstimate) (* C (sqrt (/ (sqrt (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber -0.6923902950212899)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0.5724910813390498)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (* (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 7 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x42) - Rank 28: Score = 89.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x42"
+  (Define C 0.6)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.4693810198418817)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.670463473461254)) visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 80 (MCTS1_4x0) - Rank 27: Score = 89.0
+(SearchAlgorithm
+  "MCTS1_4x0"
+  (Define C 1.4)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) (/ (log (* visitCount visitCount)) visitCount))))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 407 (MCTS1_4x0x2) - Rank 26: Score = 89.0
+(SearchAlgorithm
+  "MCTS1_4x0x2"
+  (Define C 1.0270228180145218)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) (/ (log (* visitCount visitCount)) visitCount))))))
+    )
+  )
+  (Evaluation
+    (Set 1.2861757433504726 (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 252 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x0x1) - Rank 25: Score = 89.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x0x1"
+  (Define C 0.6)
+  (Define (- (* 2.010443090950832 value) value) 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (- C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.0213568225287024)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (sqrt (+ (log (Parent visitCount)) 1.9692881873559178)) visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 418 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x0x2) - Rank 24: Score = 90.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x0x2"
+  (Define C 0.7004529621743515)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.4693810198418817)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- -0.10522624959384978 valueEstimate) (+ C (sqrt (/ (sqrt (/ (log (+ (log (Parent visitCount)) 1.9692881873559178)) visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set 0.5652390248926944 (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 15 (PN-MCTS-Ax0) - Rank 23: Score = 90.0
+(SearchAlgorithm
+  "PN-MCTS-Ax0"
+  (Define C 0.6)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber 0)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 0.728494340905488)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value (* 0.10504297733960721 valueEstimate)) visitCount)))
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate sum disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+  (FinalMoveSelection
+    (Condition
+      (eq proofNumber 0)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (neq proofNumber 0)
+      (SelectNode argmax visitCount)
+    )
+  )
+)
+Individual 271 (MCTS1_4x0x1) - Rank 22: Score = 90.0
+(SearchAlgorithm
+  "MCTS1_4x0x1"
+  (Define C 0.7004529621743515)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmin (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ (* 0.10875828312236493 valueEstimate) (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 425 (PNSx0x2) - Rank 21: Score = 90.0
+(SearchAlgorithm
+  "PNSx0x2"
+  (Selection
+    "MostProvingNode"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (eq nodeType andNode)
+      (SelectNode argmin disproofNumber)
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber -0.6726094123283703)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate max disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate min (log 1.2572079436948858)))
+      (Set (* 2.0861100551139 disproofNumber) (Aggregate min disproofNumber))
+    )
+  )
+)
+Individual 230 (PNSx0x1) - Rank 20: Score = 90.0
+(SearchAlgorithm
+  "PNSx0x1"
+  (Selection
+    "MostProvingNode"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmin 0.506049170954468)
+    )
+    (Condition
+      (eq nodeType andNode)
+      (SelectNode argmin disproofNumber)
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber -0.6923902950212899)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0.5724910813390498)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate max disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min proofNumber))
+    )
+  )
+)
+Individual 426 (MCTSx0x1x2) - Rank 19: Score = 91.0
+(SearchAlgorithm
+  "MCTSx0x1x2"
+  (Define C 0.6)
+  (Define value -0.31825866295155353)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (log (/ (sqrt (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax 2.0597262302303725)
+  )
+)
+Individual 409 (MCTSx0x1x2) - Rank 18: Score = 92.0
+(SearchAlgorithm
+  "MCTSx0x1x2"
+  (Define C 0)
+  (Define value -0.46703271231785104)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (sqrt (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value 1.9646929743514951) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax 2.0597262302303725)
+  )
+)
+Individual 56 (PNSx0) - Rank 17: Score = 92.0
+(SearchAlgorithm
+  "PNSx0"
+  (Selection
+    "MostProvingNode"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (eq nodeType andNode)
+      (SelectNode argmin disproofNumber)
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber -0.6923902950212899)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate max disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+)
+Individual 79 (PN-MCTSdepthx0) - Rank 16: Score = 93.0
+(SearchAlgorithm
+  "PN-MCTSdepthx0"
+  (Define C 0.6)
+  (Define value 0)
+  (Define switchDepth 5)
+  (Selection
+    "UCTPN"
+    (Condition
+      (lte depth switchDepth)
+      (Condition
+        (eq nodeType maxNode)
+        (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+      )
+      (Condition
+        (eq nodeType minNode)
+        (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+      )
+    )
+    (Condition
+      (gt depth switchDepth)
+      (Condition
+        (eq nodeType orNode)
+        (SelectNode argmin proofNumber)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (SelectNode argmin disproofNumber)
+      )
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber -0.16488385485812462)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min (log proofNumber)))
+      (Set disproofNumber (Aggregate sum disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+  (FinalMoveSelection
+    (Condition
+      (eq proofNumber 0)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (neq proofNumber 0)
+      (SelectNode argmax visitCount)
+    )
+  )
+)
+Individual 417 (MCTS1_4x0x1x2) - Rank 15: Score = 93.0
+(SearchAlgorithm
+  "MCTS1_4x0x1x2"
+  (Define C 0.7004529621743515)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmin (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ (/ 0.10875828312236493 valueEstimate) (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 439 (PNSx0x2) - Rank 14: Score = 93.0
+(SearchAlgorithm
+  "PNSx0x2"
+  (Selection
+    "MostProvingNode"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (eq nodeType andNode)
+      (SelectNode argmin disproofNumber)
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber -0.6923902950212899)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min 1.162766323978345))
+      (Set disproofNumber (Aggregate max disproofNumber))
+    )
+    (Condition
+      (eq nodeType maxNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+)
+Individual 223 (PN-MCTSdepthx0x1) - Rank 13: Score = 93.0
+(SearchAlgorithm
+  "PN-MCTSdepthx0x1"
+  (Define C 0.6)
+  (Define value 0)
+  (Define switchDepth 5)
+  (Selection
+    "UCTPN"
+    (Condition
+      (lte depth switchDepth)
+      (Condition
+        (eq nodeType maxNode)
+        (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+      )
+      (Condition
+        (eq nodeType minNode)
+        (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+      )
+    )
+    (Condition
+      (gt depth switchDepth)
+      (Condition
+        (eq nodeType orNode)
+        (SelectNode argmin proofNumber)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (SelectNode argmin disproofNumber)
+      )
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber -0.19506555256626493)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set 0.09628678541036284 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min (log proofNumber)))
+      (Set disproofNumber (Aggregate sum disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+  (FinalMoveSelection
+    (Condition
+      (eq proofNumber 0)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (neq proofNumber 0)
+      (SelectNode argmax visitCount)
+    )
+  )
+)
+Individual 411 (PNSx0x2) - Rank 12: Score = 93.0
+(SearchAlgorithm
+  "PNSx0x2"
+  (Selection
+    "MostProvingNode"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (eq nodeType andNode)
+      (SelectNode argmin disproofNumber)
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (neq proofValue true)
+      (Set proofNumber -0.39585747376876224)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set value (ExternalFunction "mctsEval" node))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min (log 1.2572079436948858)))
+    )
+  )
+)
+Individual 401 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x2) - Rank 11: Score = 95.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x2"
+  (Define C 0.6003137042630834)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.4693810198418817)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (+ 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (sqrt (+ (log (Parent visitCount)) 1.9692881873559178)) C)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 222 (MCTSx0x1) - Rank 10: Score = 95.0
+(SearchAlgorithm
+  "MCTSx0x1"
+  (Define C 0.6)
+  (Define value -0.46703271231785104)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (sqrt (Parent visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax 2.0597262302303725)
+  )
+)
+Individual 433 (PN-MCTS-Ax0x2) - Rank 9: Score = 95.0
+(SearchAlgorithm
+  "PN-MCTS-Ax0x2"
+  (Define C 0.6)
+  (Define value -0.2819622053904128)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+    )
+    (Condition
+      (neq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.4693810198418817)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber 0)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 0.728494340905488)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value (* 0.10504297733960721 valueEstimate)) visitCount)))
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate sum disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+  (FinalMoveSelection
+    (Condition
+      (eq proofNumber 0)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (neq proofNumber 0)
+      (SelectNode argmax visitCount)
+    )
+  )
+)
+Individual 71 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x42x0) - Rank 8: Score = 95.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x42x0"
+  (Define C 0.6)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.4693810198418817)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.670463473461254)) 2.797184729331219)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 91 (PNSx0) - Rank 7: Score = 96.0
+(SearchAlgorithm
+  "PNSx0"
+  (Selection
+    "MostProvingNode"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (eq nodeType andNode)
+      (SelectNode argmin disproofNumber)
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber 0)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate sum disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min (log 1.2572079436948858)))
+    )
+  )
+)
+Individual 263 (PNSx0x1) - Rank 6: Score = 96.0
+(SearchAlgorithm
+  "PNSx0x1"
+  (Selection
+    "MostProvingNode"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (eq nodeType andNode)
+      (SelectNode argmin disproofNumber)
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber (- 0 1.76603093386796))
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber (/ 1.4324082854790408 1))
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1.1671229136759922)
+      )
+    )
+  )
+  (Backpropagation
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate sum disproofNumber))
+    )
+    (Condition
+      (eq nodeType maxNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+)
+Individual 52 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x42x0) - Rank 5: Score = 99.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x42x0"
+  (Define C 0.6193414515847877)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (sqrt (/ (log (Parent 1.438854416138446)) 1.4693810198418817)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.670463473461254)) visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 2 (PN-MCTSdepth) - Rank 4: Score = 100.0
+(SearchAlgorithm
+  "PN-MCTSdepth"
+  (Define C 0.6)
+  (Define value 0)
+  (Define switchDepth 5)
+  (Selection
+    "UCTPN"
+    (Condition
+      (lte depth switchDepth)
+      (Condition
+        (eq nodeType maxNode)
+        (SelectNode argmax (+ valueEstimate (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+      )
+      (Condition
+        (eq nodeType minNode)
+        (SelectNode argmax (+ (- 0 valueEstimate) (* C (sqrt (/ (log (Parent visitCount)) visitCount)))))
+      )
+    )
+    (Condition
+      (gt depth switchDepth)
+      (Condition
+        (eq nodeType orNode)
+        (SelectNode argmin proofNumber)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (SelectNode argmin disproofNumber)
+      )
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber 0)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value valueEstimate) visitCount)))
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate sum disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+  (FinalMoveSelection
+    (Condition
+      (eq proofNumber 0)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (neq proofNumber 0)
+      (SelectNode argmax visitCount)
+    )
+  )
+)
+Individual 430 (PNSx0x1x2) - Rank 3: Score = 101.0
+(SearchAlgorithm
+  "PNSx0x1x2"
+  (Selection
+    "MostProvingNode"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (eq nodeType andNode)
+      (SelectNode argmin disproofNumber)
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber -0.6923902950212899)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set proofNumber numChildren)
+        (Set disproofNumber 3.97713663321719)
+      )
+    )
+  )
+  (Backpropagation
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate max disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+)
+Individual 242 (MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x0x1) - Rank 2: Score = 102.0
+(SearchAlgorithm
+  "MCTSx7x8x9x13x14x15x25x28x32x35x37x39x41x43x44x0x4x0x1"
+  (Define C 0.6)
+  (Define value 0)
+  (Selection
+    "UCT"
+    (Condition
+      (eq nodeType maxNode)
+      (SelectNode argmax (+ valueEstimate (- C (sqrt (/ (sqrt (/ (log (Parent visitCount)) 1.4693810198418817)) visitCount)))))
+    )
+    (Condition
+      (eq nodeType minNode)
+      (SelectNode argmax (+ (- 0 valueEstimate) (+ C (sqrt (/ (sqrt (/ (sqrt (+ (log (Parent visitCount)) 1.9692881873559178)) visitCount)) visitCount)))))
+    )
+  )
+  (Evaluation
+    (Set value (ExternalFunction "mctsEval" node))
+  )
+  (Backpropagation
+    (Set valueEstimate (+ valueEstimate (/ (- value 0.6569598146793318) visitCount)))
+  )
+  (FinalMoveSelection
+    (SelectNode argmax visitCount)
+  )
+)
+Individual 420 (PNSx0x2) - Rank 1: Score = 102.0
+(SearchAlgorithm
+  "PNSx0x2"
+  (Selection
+    "MostProvingNode"
+    (Condition
+      (eq nodeType orNode)
+      (SelectNode argmin proofNumber)
+    )
+    (Condition
+      (eq nodeType andNode)
+      (SelectNode argmin 0.20932500241064578)
+    )
+  )
+  (Evaluation
+    (Set proofValue (ExternalFunction "pnsEval" node))
+    (Condition
+      (eq proofValue true)
+      (Set proofNumber -0.6923902950212899)
+      (Set disproofNumber inf)
+    )
+    (Condition
+      (eq proofValue false)
+      (Set proofNumber inf)
+      (Set disproofNumber 0)
+    )
+    (Condition
+      (eq proofValue unknown)
+      (Condition
+        (eq nodeType orNode)
+        (Set proofNumber 1)
+        (Set disproofNumber numChildren)
+      )
+      (Condition
+        (eq nodeType andNode)
+        (Set visitCount numChildren)
+        (Set disproofNumber 1)
+      )
+    )
+  )
+  (Backpropagation
+    (Condition
+      (eq nodeType orNode)
+      (Set proofNumber (Aggregate min proofNumber))
+      (Set disproofNumber (Aggregate max disproofNumber))
+    )
+    (Condition
+      (eq nodeType andNode)
+      (Set proofNumber (Aggregate sum proofNumber))
+      (Set disproofNumber (Aggregate min disproofNumber))
+    )
+  )
+)
+=====================
